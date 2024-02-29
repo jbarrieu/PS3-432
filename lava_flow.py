@@ -29,7 +29,7 @@ A = (1 + 2*B)*np.eye(n) - C*np.eye(n, k=1) - C*np.eye(n, k=-1) # Whole formula
 # Boundary conditions
 A[0] = np.zeros(n)  # We need the velocity at the ground to be 0.
 A[0][0] = 1
-A[-1][-1] = 1 + B   # This avoids strain on surface of lava
+A[-1][-1] = 1 + C   # This avoids strain on surface of lava
 
 f = np.zeros(n)     # Velocity Field with initial value of 0
 
