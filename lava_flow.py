@@ -19,12 +19,12 @@ alpha = 10      # Angle of the slope in degrees
 
 ### Important scalars
 
-B = D*dt/dx**2               # B <= 1 to respect the Courant condition
+C = D*dt/dx**2                # Set value obeying Courant
 x = np.arange(0, n, dx)       # Setting Scale of Grid
 angle = np.radians(alpha)     # Conversion to radians for practicality
 a = g * np.sin(angle)         # Acceleration of Lava Formula 
 y = -a/D * (0.5*x**2 - x[-1]*x) # Analytical result for steady-state
-A = (1 + 2*B)*np.eye(n) - B*np.eye(n, k=1) - B*np.eye(n, k=-1) # Whole formula
+A = (1 + 2*B)*np.eye(n) - C*np.eye(n, k=1) - C*np.eye(n, k=-1) # Whole formula
 
 # Boundary conditions
 A[0] = np.zeros(n)  # We need the velocity at the ground to be 0.
@@ -37,7 +37,7 @@ f = np.zeros(n)     # Velocity Field with initial value of 0
 
 plt.ion()
 fig, ax = plt.subplots(1, 1)
-ax.plot(x, y, "--", color="black")    # Plots Steady State 
+ax.plot(x, y, "--", color="orange")    # Plots Steady State 
 plt_obj, = ax.plot(x, f, color="red") # Plots initial field
 
 fig.canvas.draw() 
